@@ -35,7 +35,7 @@ double averageGPA(const double gpas[], int size) {
 	for (int i = 0; i < size; i++) {
 		sum += gpas[i];
 	}
-	return static_cast<int> (sum)/size;
+	return sum / size;
 }
 
 int main(int argc, char* argv[]) {
@@ -92,7 +92,12 @@ int main(int argc, char* argv[]) {
 		std::cout << "Enter new GPA: ";
 		std::cin >> new_gpa;
 
-		updateGPA(&gpas[old_gpa_idx], new_gpa);
+		if (old_gpa_idx >= 0 && old_gpa_idx < size) {
+    		updateGPA(&gpas[old_gpa_idx], new_gpa);
+		} else {
+    		std::cout << "Invalid index!" << std::endl;
+		}
+
 		break;
             }
             case 3: {
@@ -124,7 +129,7 @@ int main(int argc, char* argv[]) {
     // TODO: free memory 
     if (size > 0) {
     	for (int i = 0; i < size; i++) {
-		delete names[i];
+		delete[] names[i];
 	    }
     }
     return 0;
