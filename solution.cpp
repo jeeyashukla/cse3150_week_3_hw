@@ -1,12 +1,13 @@
 #include <iostream>
 #include <cstring>   // for strlen, strcpy
+#include <string>
 
 // TODO: function prototypes
 
 // TODO: implement addStudent
 void addStudent(char* name, double gpa, char* names[], double gpas[], int& size, int capacity) {
 	if (size >= capacity) {
-        throw string("List full");
+        throw std::string("List full");
     }
 	names[size] = name;
 	gpas[size] = gpa;
@@ -29,7 +30,7 @@ void printStudent(const char* name, const double& gpa) {
 // TODO: implement averageGPA
 double averageGPA(const double gpas[], int size) {
 	if (size == 0){
-		throw string("No students");
+		throw std::string("No students");
     }
 	double sum = 0.0;
 	for (int i = 0; i < size; i++) {
@@ -64,19 +65,19 @@ int main(int argc, char* argv[]) {
             case 1: {
                 // TODO: implement menu logic
 		try {
-			string n;
+			std::string n;
 			std::cout << "Enter student name: ";
 			std::cin >> n;
 			char* name = new char[n.size() + 1];
 
-			strcpy(name, n.c_str());
+			std::strcpy(name, n.c_str());
 
 			double gpa;
 			std::cout << "Enter student gpa: ";
 			std::cin >> gpa;
 
 			addStudent(name, gpa, names, gpas, size, capacity);
-		} catch (string error_msg) {
+		} catch (std::string error_msg) {
 			std::cout << error_msg << std::endl;
 			return 1;
 		}
@@ -111,7 +112,7 @@ int main(int argc, char* argv[]) {
                 // TODO: implement menu logic
 		try {
 			std::cout << "Average GPA: " << averageGPA(gpas, size) << std::endl;
-		} catch (string error) {
+		} catch (std::string error) {
 			std::cout << error << std::endl;
 		}
                 break;
